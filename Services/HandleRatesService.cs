@@ -64,4 +64,20 @@ public class HandleRatesService : IHandleRatesService
         var jsonResponse = await response.Content.ReadAsStringAsync();
         return JsonSerializer.Deserialize<List<CurrencyRate>>(jsonResponse);
     }
+
+    public async Task<IQueryable<CurrencyRate>> GetExchangeRates(int day, int month, int year, int curId)
+    {
+        var date = new DateTime(year, month, day, 0, 0, 0, DateTimeKind.Utc);
+        
+        var rates = _repository.Get<CurrencyRate>()
+            .Where(r => r.Cur_ID == curId && r.Date == date);
+        
+        if (!rates.Any())
+        {
+            throw new IncorrectDataException("No exchange rates found for the specified date and currency ID.");
+        }
+    
+        return rates; 
+    }
+
 }

@@ -18,15 +18,6 @@ public class RatesController : ControllerBase
         _logger = logger;
         _ratesService = ratesService;
     }
-
-    [HttpGet]
-    [Route("GetExchangeRates")]
-    public async Task<IActionResult> GetExchangeRates()
-    {
-
-        return Ok("exchagerate");
-    }
-    
     
     /// <summary>
     ///     Upload exchange rates
@@ -52,5 +43,29 @@ public class RatesController : ControllerBase
         await _ratesService.UploadExchangeRates(day, month, year);
         _logger.LogInformation("Exchange changes uploaded");    
         return Ok("Exchange changes uploaded");
+    }
+    
+    /// <summary>
+    ///     Get exchange rate
+    /// </summary>
+    /// <remarks>
+    ///     Sample request:
+    ///     Post /Rates/GetExchangeRates
+    /// </remarks>
+    /// <returns>
+    ///     200 OK
+    /// </returns>
+    /// <response code="200">Rates is got.</response>
+    /// <response code="422">Invalid input data.</response>
+    /// <response code="500">Internal server error.</response>
+    [HttpGet]
+    [Route("GetExchangeRates")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> GetExchangeRates(int day, int month, int year, int Cur_ID)
+    {
+        _logger.LogInformation("Exchange rate is got");    
+        return Ok(await _ratesService.GetExchangeRates(day, month, year,Cur_ID));
     }
 }
