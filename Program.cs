@@ -1,5 +1,9 @@
 using exchange_rates.Data;
 using exchange_rates.MiddleWares;
+using exchange_rates.Repository;
+using exchange_rates.Repository.Interfaces;
+using exchange_rates.Services;
+using exchange_rates.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+
+builder.Services.AddTransient<IHandleRatesService, HandleRatesService>();
+builder.Services.AddTransient<IDbRepository, DbRepository>();
 
 builder.Services.AddDbContext<DataContext>(options => 
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));

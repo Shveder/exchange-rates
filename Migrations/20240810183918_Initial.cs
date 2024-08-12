@@ -5,10 +5,8 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace exchange_rates.Migrations
 {
-    /// <inheritdoc />
     public partial class Initial : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -16,10 +14,12 @@ namespace exchange_rates.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    Code = table.Column<string>(type: "text", nullable: false),
+                    Cur_ID = table.Column<int>(type: "integer", nullable: false),
                     Date = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Rate = table.Column<decimal>(type: "numeric", nullable: false),
-                    Status = table.Column<bool>(type: "boolean", nullable: false)
+                    Cur_Abbreviation = table.Column<string>(type: "text", nullable: false),
+                    Cur_Scale = table.Column<int>(type: "integer", nullable: false),
+                    Cur_Name = table.Column<string>(type: "text", nullable: false),
+                    Cur_OfficialRate = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,7 +27,6 @@ namespace exchange_rates.Migrations
                 });
         }
 
-        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

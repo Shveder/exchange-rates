@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("exchange-rates")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+80f9bdee617c1527057dc51cbdb64764dbb057aa")]
 [assembly: System.Reflection.AssemblyProductAttribute("exchange-rates")]
 [assembly: System.Reflection.AssemblyTitleAttribute("exchange-rates")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\shved\\OneDrive\\Рабочий стол\\exchange-rates\\exchange-rates\\exchange-rates.csproj": {}
+    "C:\\Users\\User\\Desktop\\exchange-rates\\exchange-rates.csproj": {}
   },
   "projects": {
-    "C:\\Users\\shved\\OneDrive\\Рабочий стол\\exchange-rates\\exchange-rates\\exchange-rates.csproj": {
+    "C:\\Users\\User\\Desktop\\exchange-rates\\exchange-rates.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\shved\\OneDrive\\Рабочий стол\\exchange-rates\\exchange-rates\\exchange-rates.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\exchange-rates\\exchange-rates.csproj",
         "projectName": "exchange-rates",
-        "projectPath": "C:\\Users\\shved\\OneDrive\\Рабочий стол\\exchange-rates\\exchange-rates\\exchange-rates.csproj",
-        "packagesPath": "C:\\Users\\shved\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\shved\\OneDrive\\Рабочий стол\\exchange-rates\\exchange-rates\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\exchange-rates\\exchange-rates.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\exchange-rates\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\shved\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -34,11 +34,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -87,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.303/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100-rc.1.23463.5/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

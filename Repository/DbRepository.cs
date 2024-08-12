@@ -32,29 +32,9 @@ public class DbRepository : IDbRepository
         return entity.Entity.Id;
     }
 
-
-    public async Task Delete<T>(Guid id) where T : class, IModels
-    {
-        var entity = await _context.Set<T>().FirstOrDefaultAsync(x => x.Id == id);
-        if (entity != null)
-        {
-            _context.Set<T>().Remove(entity);
-            await _context.SaveChangesAsync();
-        }
-    }
-
-    public async Task Update<T>(T entity) where T : class, IModels
-    {
-        await Task.Run(() => _context.Set<T>().Update(entity));
-    }
-
     public async Task<int> SaveChangesAsync()
     {
         return await _context.SaveChangesAsync();
     }
-
-    public IQueryable<T> GetAll<T>() where T : class, IModels
-    {
-        return _context.Set<T>().AsQueryable();
-    }
+    
 }

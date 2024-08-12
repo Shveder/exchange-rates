@@ -1,13 +1,23 @@
 using exchange_rates.Data;
 using exchange_rates.Models;
+using exchange_rates.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exchange_rates.Controllers;
 
 [ApiController]
-[Route("RatesController")]
+[Route("[controller]")]
 public class RatesController : ControllerBase
 {
+
+    private readonly ILogger<RatesController> _logger;
+    private readonly IHandleRatesService _ratesService;
+
+    public RatesController(ILogger<RatesController> logger, IHandleRatesService ratesService)
+    {
+        _logger = logger;
+        _ratesService = ratesService;
+    }
 
     [HttpGet]
     [Route("GetExchangeRates")]
@@ -15,5 +25,32 @@ public class RatesController : ControllerBase
     {
 
         return Ok("exchagerate");
+    }
+    
+    
+    /// <summary>
+    ///     Upload exchange rates
+    /// </summary>
+    /// <remarks>
+    ///     Sample request:
+    ///     Post /Rates/UploadExchangeRates
+    /// </remarks>
+    /// <returns>
+    ///     200 OK
+    /// </returns>
+    /// <response code="200">Rates is uploaded.</response>
+    /// <response code="422">Invalid input data.</response>
+    /// <response code="500">Internal server error.</response>
+    [HttpPost]
+    [Route("UploadExchangeRates")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task<IActionResult> UploadExchangeRates(int day, int month, int year)
+    {
+
+        await _ratesService.UploadExchangeRates(day, month, year);
+        _logger.LogInformation("Exchange changes uploaded");    
+        return Ok("Exchange changes uploaded");
     }
 }
