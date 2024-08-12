@@ -37,10 +37,10 @@ public class RatesController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status422UnprocessableEntity)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-    public async Task<IActionResult> UploadExchangeRates(int day, int month, int year)
+    public async Task<IActionResult> UploadExchangeRates([FromBody] DateTime date)
     {
 
-        await _ratesService.UploadExchangeRates(day, month, year);
+        await _ratesService.UploadExchangeRates(date);
         _logger.LogInformation("Exchange changes uploaded");    
         return Ok("Exchange changes uploaded");
     }

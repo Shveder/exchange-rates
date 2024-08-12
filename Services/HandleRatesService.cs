@@ -18,18 +18,10 @@ public class HandleRatesService : IHandleRatesService
         _logger = logger;
     }
 
-    public async Task UploadExchangeRates(int day, int month, int year)
+    public async Task UploadExchangeRates(DateTime date)
     {
-        if (year > 2024)
-            throw new IncorrectDataException("Year is invalid");
-        if (day is < 1 or > 31)
-            throw new IncorrectDataException("Day is invalid");
-        if (month is < 1 or > 12)
-            throw new IncorrectDataException("Month is invalid");
-    
-        var rates = await GetCurrencyRatesFromApi($"https://api.nbrb.by/exrates/rates?ondate={year}-{month}-{day}&periodicity=0");
-
-        // Убедитесь, что даты в формате UTC перед любой операцией с ними
+        var rates = await GetCurrencyRatesFromApi($"https://api.nbrb.by/exrates/rates?ondate={date.Year}-{date.Month}-{date.Day}&periodicity=0");
+        
         foreach (var rate in rates)
         {
             rate.Date = DateTime.SpecifyKind(rate.Date, DateTimeKind.Utc);

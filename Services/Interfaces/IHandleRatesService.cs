@@ -4,6 +4,6 @@ namespace exchange_rates.Services.Interfaces;
 
 public interface IHandleRatesService
 {
-    Task UploadExchangeRates(int day, int month, int year);
+    Task UploadExchangeRates(DateTime date);
     Task<IQueryable<CurrencyRate>> GetExchangeRates(int day, int month, int year, int curId);
 }
