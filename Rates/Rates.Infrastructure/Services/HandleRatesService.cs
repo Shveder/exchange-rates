@@ -1,10 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Rates.Core.Models;
 using Rates.Infrastructure.Exceptions;
-using Rates.Infrastructure.Repository.Interfaces;
-using Rates.Infrastructure.Services.Interfaces;
 
 namespace Rates.Infrastructure.Services;
 

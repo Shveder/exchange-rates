@@ -1,7 +1,6 @@
 using System.Linq.Expressions;
 using Rates.Core.Models.Interface;
 using Rates.Infrastructure.Data;
-using Rates.Infrastructure.Repository.Interfaces;
 
 namespace Rates.Infrastructure.Repository;
 

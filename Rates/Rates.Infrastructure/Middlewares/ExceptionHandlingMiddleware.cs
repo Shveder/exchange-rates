@@ -2,7 +2,6 @@
 using System.Security.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Rates.Core.DTO;
 using Rates.Infrastructure.Exceptions;
 
 namespace Rates.Infrastructure.MiddleWares;

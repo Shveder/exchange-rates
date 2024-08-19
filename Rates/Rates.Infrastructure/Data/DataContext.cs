@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Rates.Core.Models;
 
 namespace Rates.Infrastructure.Data;
 
