@@ -1,8 +1,6 @@
-using exchange_rates.Models;
-using exchange_rates.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
+using Rates.Infrastructure.Services.Interfaces;
 
-namespace exchange_rates.Controllers;
+namespace Rates.API.Controllers;
 
 [ApiController]
 [Route("[controller]")]

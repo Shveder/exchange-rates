@@ -1,10 +1,9 @@
-using exchange_rates.MiddleWares;
-using exchange_rates.Repository;
-using exchange_rates.Repository.Interfaces;
-using exchange_rates.Services;
-using exchange_rates.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using Rates.API.Data;
+using Rates.Infrastructure.Data;
+using Rates.Infrastructure.MiddleWares;
+using Rates.Infrastructure.Repository;
+using Rates.Infrastructure.Repository.Interfaces;
+using Rates.Infrastructure.Services;
+using Rates.Infrastructure.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
