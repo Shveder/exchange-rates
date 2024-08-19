@@ -33,5 +33,4 @@ public class CurrencyRate : IModels
     /// Official rate of currency.
     /// </summary>
     [Required] public decimal Cur_OfficialRate { get; set; }
-
 }
