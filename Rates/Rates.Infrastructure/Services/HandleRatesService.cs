@@ -28,7 +28,7 @@ public class HandleRatesService : IHandleRatesService
             rate.Date = DateTime.SpecifyKind(rate.Date, DateTimeKind.Utc);
         }
 
-        bool exists = await _repository.Get<CurrencyRate>(r => r.Cur_ID == rates[0].Cur_ID && r.Date == rates[0].Date).AnyAsync();
+        bool exists = await _repository.Get<CurrencyRate>(r => r.Cur_ID == rates.First().Cur_ID && r.Date == rates.First().Date).AnyAsync();
     
         if (!exists)
         {
