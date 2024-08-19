@@ -1,5 +1,4 @@
 ﻿using System.Net;
-using System.Security.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Rates.Infrastructure.Exceptions;
@@ -30,20 +29,6 @@ public class ExceptionHandlingMiddleware
             await HandleExceptionAsync(httpContext,
                 ex.Message,
                 HttpStatusCode.UnprocessableEntity,
-                ex.Message);
-        }
-        catch (KeyNotFoundException ex)
-        {
-            await HandleExceptionAsync(httpContext,
-                ex.Message,
-                HttpStatusCode.NotFound,
-                ex.Message);
-        }
-        catch (AuthenticationException ex)
-        {
-            await HandleExceptionAsync(httpContext,
-                ex.Message,
-                HttpStatusCode.BadRequest,
                 ex.Message);
         }
         catch (Exception ex)
