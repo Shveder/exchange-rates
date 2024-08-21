@@ -37,9 +37,10 @@ public class RatesController : ControllerBase
     public async Task<IActionResult> UploadExchangeRates([FromBody] DateTime date)
     {
 
+        _logger.LogInformation("Received request to upload exchange rates for date: {Date}", date);
         await _ratesService.UploadExchangeRates(date);
-        _logger.LogInformation("Exchange changes uploaded");    
-        return Ok("Exchange changes uploaded");
+        _logger.LogInformation("Successfully uploaded exchange rates for date: {Date}", date);
+        return Ok();
     }
     
     /// <summary>
@@ -63,7 +64,6 @@ public class RatesController : ControllerBase
     public async Task<IActionResult> GetExchangeRates(int day, int month, int year, int Cur_ID)
     {
         _logger.LogInformation("Exchange rate is got");    
-        //return Ok(await _ratesService.GetExchangeRates(day, month, year,Cur_ID));
-        return Ok();
+        return Ok(await _ratesService.GetExchangeRates(day, month, year,Cur_ID));
     }
 }

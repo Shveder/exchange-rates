@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Rates.Infrastructure.Exceptions;
+using Serilog;
 
 namespace Rates.Infrastructure.Services;
 
@@ -18,6 +19,8 @@ public class HandleRatesService : IHandleRatesService
 
     public async Task UploadExchangeRates(DateTime date)
     {
+        _logger.LogInformation("Fetching exchange rates for date: {Date}", date);
+
         var rates = await GetCurrencyRatesFromApi($"https://api.nbrb.by/exrates/rates?ondate={date.Year}-{date.Month}-{date.Day}&periodicity=0");
         
         foreach (var rate in rates)
@@ -25,10 +28,14 @@ public class HandleRatesService : IHandleRatesService
             rate.Date = DateTime.SpecifyKind(rate.Date, DateTimeKind.Utc);
         }
 
+        _logger.LogInformation("Checking if rates already exist in the database.");
+
         bool exists = await _repository.Get<CurrencyRate>(r => r.Cur_ID == rates.First().Cur_ID && r.Date == rates.First().Date).AnyAsync();
-    
+
         if (!exists)
         {
+            _logger.LogInformation("Rates do not exist. Adding new rates.");
+
             foreach (var rate in rates)
             {
                 await _repository.Add(rate);
@@ -37,6 +44,7 @@ public class HandleRatesService : IHandleRatesService
         }
         else
         {
+            _logger.LogWarning("Rate for this day is already in database.");
             throw new IncorrectDataException("Rate for this day is already in database");
         }
     }
@@ -48,6 +56,7 @@ public class HandleRatesService : IHandleRatesService
 
         if (!response.IsSuccessStatusCode)
         {
+            Log.Error("Invalid date to get rates from API.");
             throw new IncorrectDataException("Invalid date to get rates");
         }
 
@@ -64,10 +73,10 @@ public class HandleRatesService : IHandleRatesService
         
         if (!rates.Any())
         {
+            _logger.LogWarning("No exchange rates found for date: {Date} and currency ID: {CurId}", date, curId);
             throw new IncorrectDataException("No exchange rates found for the specified date and currency ID.");
         }
     
         return rates; 
     }
-
 }
