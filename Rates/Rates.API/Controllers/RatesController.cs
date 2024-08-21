@@ -63,6 +63,7 @@ public class RatesController : ControllerBase
     public async Task<IActionResult> GetExchangeRates(int day, int month, int year, int Cur_ID)
     {
         _logger.LogInformation("Exchange rate is got");    
-        return Ok(await _ratesService.GetExchangeRates(day, month, year,Cur_ID));
+        //return Ok(await _ratesService.GetExchangeRates(day, month, year,Cur_ID));
+        return Ok();
     }
 }
