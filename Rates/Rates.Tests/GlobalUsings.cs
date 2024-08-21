@@ -1,1 +1,10 @@
 global using Xunit;
+global using System.Net;
+global using Microsoft.Extensions.Logging;
+global using Newtonsoft.Json;
+global using Rates.Core.Models;
+global using Rates.Infrastructure.Exceptions;
+global using Rates.Infrastructure.Repository.Interfaces;
+global using Rates.Infrastructure.Services;
+global using Moq;
+global using Moq.Protected;
