@@ -39,8 +39,9 @@ public class RatesController : ControllerBase
 
         _logger.LogInformation("Received request to upload exchange rates for date: {Date}", date);
         await _ratesService.UploadExchangeRates(date);
-        _logger.LogInformation("Successfully uploaded exchange rates for date: {Date}", date);
-        return Ok();
+        const string commonAnswer = "Successfully uploaded exchange rates for date: {Date}";
+        _logger.LogInformation(commonAnswer, date);
+        return Ok(commonAnswer);
     }
     
     /// <summary>
